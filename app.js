@@ -6,33 +6,73 @@ let userChoice
 let computerChoice
 
 
-possibleChoices.forEach(possibleChoice => {
-    possibleChoice.addEventListener('click', e =>
-    {
-        userChoice = e.target.id
-        userChoiceDisplay.innerHTML = userChoice
-        generateComputerChoice()
-    })
-})
+possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', e => 
+{
+    userChoice = e.target.id
+    userChoiceDisplay.innerHTML = userChoice
+    getComputerChoice()
+    getResult()
+}))
 
-function generateComputerChoice() {
-    const randomNumbers = Math.floor(Math.random() * 3 ) + 1
 
-    
-    if (randomNumbers === 1)
+function getComputerChoice()
+{
+    const randomNumber = Math.floor(Math.random() * 3) + 1
+
+    if (randomNumber === 1)
     {
         computerChoice = 'Rock'
     }
 
-    if (randomNumbers === 2)
+    if (randomNumber === 2)
     {
         computerChoice = 'Paper'
     }
 
-    if (randomNumbers === 3)
+    if (randomNumber === 3)
     {
         computerChoice = 'Scissors'
     }
 
     computerChoiceDisplay.innerHTML = computerChoice
+}
+
+function getResult()
+
+{
+    if (userChoice === computerChoice)
+    {
+        result = 'There was a Tie!'
+    }
+
+    if (userChoice == 'Rock' && computerChoice == 'Scissors')
+    {
+        result = 'You Win!'
+    }
+
+    if (userChoice == 'Rock' && computerChoice == 'Paper')
+    {
+        result = 'You Lose!'
+    }
+
+    if (userChoice == 'Paper' && computerChoice == 'Scissors')
+    {
+        result = 'You Lose!'
+    }
+
+    if (userChoice == 'Paper' && computerChoice == 'Rock')
+    {
+        result = 'You Win!'
+    }
+
+    if (userChoice == 'Scissors' && computerChoice == 'Paper')
+    {
+        result = 'You Win!'
+    }
+
+    if (userChoice == 'Scissors' && computerChoice == 'Rock')
+    {
+        result = 'You Lose!'
+    }
+    resultDisplay.innerHTML = result
 }
